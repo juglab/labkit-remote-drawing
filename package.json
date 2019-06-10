@@ -1,0 +1,15 @@
+{
+  "name": "labkit-remote",
+  "version": "0.0.1",
+  "description": "labkit remote drawing",
+  "dependencies": {
+    "express": "^4.15.2",
+    "jquery-mobile": "^1.5.0-alpha.1",
+    "node-static": "^0.7.11",
+    "pinch-zoom-canvas": "^1.0.4",
+    "socket.io": "^1.7.3"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Labkit remote drawing</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <link rel="stylesheet" href="/css/styles.css" />
+        <!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+		<div id="cursors">
+	    	<!-- The mouse pointers will be created here -->
+		</div>
+
+    <img id="img" src="/img/segmentationinput.png">
+    <canvas id="paper">
+			Your browser needs to support canvas for this to work!
+		</canvas>
+    <div id="menu">
+      <button id="move" class="active">move</button>
+      <button id="draw">draw</button>
+      <button id="fg">foreground</button>
+      <button id="bg" class="active">background</button>
+    </div>
+        <!-- JavaScript includes. Notice that socket.io.js is served by node.js -->
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script src="/js/pinch-zoom-canvas.js"></script>
+		<script src="/js/script.js"></script>
+
+    </body>
+</html>
