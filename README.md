@@ -1,13 +1,30 @@
-# chat-example
+# Lapkit remote drawing app
 
-This is the source code for a very simple chat example used for
-the [Getting Started](http://socket.io/get-started/chat/) guide
-of the Socket.IO website.
+This a a nodejs app to draw labkit labels in the browser. It synchronizes the labels in case multiple devices access the labeling page.
 
-Please refer to it to learn how to run this application.
 
-You can also spin up a free Heroku dyno to test it out:
+## Installation
+- [install nodejs and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- open terminal and navigate to this directory
+- run `npm install`
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/socketio/chat-example)
+## Run
+- open terminal and navigate to this directory
+- run `node app.js`
+- open http://YOURDEVICEIP:8080/ with your phone or tablet
+	- replace `YOURDEVICEIP` with the IP of your device
+- use your fingers to draw labels
+- use the buttons to change between background and foreground
+- one can use multiple devices, the labels will be synchronized (I hope)
+- to clear all labels, press `clear all`
 
-Besides, the application is deployed on [Now](https://zeit.co/now): https://socketio-chat-example.now.sh/
+## Preparation
+- the input image for the labkit segmentation has to be saved to `/public/img/segmentationinput.png`
+- labkit needs to access / listen to file changes of `/public/img/labeling.png` and load the file as a labeling
+
+## Restrictions
+- 2D only
+- fixed labels, background and foreground
+- fixed stroke with
+- no undo
+- no partial clearing
