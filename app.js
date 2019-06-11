@@ -13,6 +13,7 @@ var saveScheduled = false;
 
 var	_static = require('node-static'); // for serving files
 
+
 var fileServer = new _static.Server('./');
 app.use(express.static('public'));
 
@@ -23,6 +24,7 @@ app.get('/', function(req, res){
 saveCanvas();
 
 // Listen for incoming connections from clients
+io.origins('*:*');
 io.sockets.on('connection', function (socket) {
 
   console.log("client connected: " + socket.id);

@@ -1,3 +1,6 @@
+// The URL of your web server (the port is set in app.js)
+var url = 'http://localhost:8080/';
+
 var moving = true;
 var ctxImg;
 var inputImg;
@@ -6,130 +9,12 @@ var prev = [0,0];
 var lineWidth = 4;
 var dCtx;
 
-// $(function(){
-// var clients = {};
-// var cursors = {};
-
-// var socket = io.connect(url);
-//
-// socket.on('moving', function (data) {
-//
-// 	if(! (data.id in clients)){
-// 		// a new user has come online. create a cursor for them
-// 		cursors[data.id] = $('<div class="cursor">').appendTo('#cursors');
-// 	}
-//
-// 	// Move the mouse pointer
-// 	cursors[data.id].css({
-// 		'left' : data.x,
-// 		'top' : data.y
-// 	});
-//
-// 	// Is the user drawing?
-// 	if(data.drawing && clients[data.id]){
-//
-// 		// Draw a line on the canvas. clients[data.id] holds
-// 		// the previous position of this user's mouse pointer
-//
-// 		drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
-// 	}
-//
-// 	// Saving the current client state
-// 	clients[data.id] = data;
-// 	clients[data.id].updated = $.now();
-//
-// });
-//
-// var prev = {};
-//
-// canvas.on('mousedown',function(e){
-// 	e.preventDefault();
-// 	drawing = true;
-// 	prev.x = e.pageX;
-// 	prev.y = e.pageY;
-//
-// 	// Hide the instructions
-// 	instructions.fadeOut();
-// });
-//
-// canvas.bind('mouseup mouseleave',function(){
-// 	drawing = false;
-// });
-//
-// var lastEmit = $.now();
-//
-// canvas.on('mousemove',function(e){
-// 	if($.now() - lastEmit > 30){
-// 		socket.emit('mousemove',{
-// 			'x': e.pageX,
-// 			'y': e.pageY,
-// 			'drawing': drawing,
-// 			'id': id
-// 		});
-// 		lastEmit = $.now();
-// 	}
-//
-// 	// Draw a line for the current user's movement, as it is
-// 	// not received in the socket.on('moving') event above
-//
-// 	if(drawing){
-//
-// 		drawLine(prev.x, prev.y, e.pageX, e.pageY);
-//
-// 		prev.x = e.pageX;
-// 		prev.y = e.pageY;
-// 	}
-// });
-//
-// // Remove inactive clients after 10 seconds of inactivity
-// setInterval(function(){
-//
-// 	for(ident in clients){
-// 		if($.now() - clients[ident].updated > 10000){
-//
-// 			// Last update was more than 10 seconds ago.
-// 			// This user has probably closed the page
-//
-// 			cursors[ident].remove();
-// 			delete clients[ident];
-// 			delete cursors[ident];
-// 		}
-// 	}
-//
-// },10000);
-
-// });
-
-function fitToImg(canvas){
-	var img = document.getElementById('img');
-	var width = img.clientWidth;
-	var height = img.clientHeight;
-	canvas.style.width=width;
-	canvas.style.height=height;
-	canvas.width  = width;
-	canvas.height = height;
-}
-
-function imgWidth() {
-	var img = document.getElementById('img');
-	return img.clientWidth;
-}
-
-function imgHeight() {
-	var img = document.getElementById('img');
-	return img.clientHeight;
-}
-
 $(function(){
-
 
 	if(!('getContext' in document.createElement('canvas'))){
 		alert('Sorry, it looks like your browser does not support canvas!');
 		return false;
 	}
-
-	// The URL of your web server (the port is set in app.js)
-	var url = 'http://192.168.178.52:8080';
 
 	var socket = io.connect(url);
 
@@ -145,6 +30,8 @@ $(function(){
 		dCtx.stroke();
 		dCtx.closePath();
 	});
+
+// the following code is mostly copied from https://stackoverflow.com/a/45122001/5325168
 
 	const U = undefined;
 	const doFor = (count, callback) => {var i = 0; while (i < count && callback(i ++) !== true ); };
@@ -212,8 +99,6 @@ $(function(){
 	var cw = w / 2;  // center
 	var ch = h / 2;
 	var globalTime;
-
-
 
 	// main update function
 	function update(timer){
@@ -507,4 +392,24 @@ function updateStrokeStyle() {
 	} else {
 		strokeStyle = "#e47600";
 	}
+}
+
+function fitToImg(canvas){
+	var img = document.getElementById('img');
+	var width = img.clientWidth;
+	var height = img.clientHeight;
+	canvas.style.width=width;
+	canvas.style.height=height;
+	canvas.width  = width;
+	canvas.height = height;
+}
+
+function imgWidth() {
+	var img = document.getElementById('img');
+	return img.clientWidth;
+}
+
+function imgHeight() {
+	var img = document.getElementById('img');
+	return img.clientHeight;
 }

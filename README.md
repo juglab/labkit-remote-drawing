@@ -1,4 +1,4 @@
-# Lapkit remote drawing app
+# Labkit remote drawing app
 
 This a a nodejs app to draw labkit labels in the browser. It synchronizes the labels in case multiple devices access the labeling page.
 
@@ -7,6 +7,13 @@ This a a nodejs app to draw labkit labels in the browser. It synchronizes the la
 - [install nodejs and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - open terminal and navigate to this directory
 - run `npm install`
+
+## Adjust URL
+- in order to run it on a mobile device, you either need to run this on a server or use the IP of your computer in a local network (`ifconfig`)
+- replace `localhost` with your IP / URL in `public/js/script.js`, line 2:
+```
+var url = 'http://localhost:8080/';
+```
 
 ## Run
 - open terminal and navigate to this directory
